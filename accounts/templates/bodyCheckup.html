@@ -1,0 +1,19 @@
+
+{% extends  'main.html'%}
+{% load static %}
+{% load crispy_forms_tags %}  
+
+{% block content %}
+<div class="container">
+    <h1>Body Checkup</h1>
+    <img src="{% static 'images/demo/bmi.jpg' %}" alt="">
+    <p><strong>User:</strong>{{user.username}}</p>
+    <p><strong>Blood Type:</strong>{{user.bloodtype}}</p>
+    <p><strong>Born in:</strong>{{user.birthdate}}</p>
+    <p><strong>Height:</strong>{{user.height}}</p>
+    <p><strong>Weight:</strong>{{user.weight}}</p>
+    <p><strong>BMI:</strong>{{bmi}}</p>
+    <p><strong>Status:</strong>{{status}}</p>
+</div>
+{% endblock %}
+

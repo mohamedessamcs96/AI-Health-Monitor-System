@@ -1,0 +1,59 @@
+=>pip install django-crispy-forms
+=>pip install django
+=>pip install joblib
+=>pip install sklearn
+->pip install pytesseract
+->pip3 install pillow
+->pip install opencv-python
+=>python manage.py migrate --run-syncdb   
+    I should use it with the custome database
+=>python manage.py createsuperuser --username=admin --email=joe@example.com 
+    put a default value for the custome model to create superuser
+
+
+
+if form.is_valid():
+    profile=form.save(commit=False)   
+    profile.patient=request.user      in html {{user}}
+    profile.save()
+    profile.classification=clf
+    profile.save()
+
+
+
+ <form method="POST" action="{% url 'checkdiabetes'  %} ">
+#######################3
+Update
+https://docs.djangoproject.com/en/4.0/topics/db/queries/
+ from blog.models import Blog, Entry
+>>> entry = Entry.objects.get(pk=1)
+>>> cheese_blog = Blog.objects.get(name="Cheddar Talk")
+>>> entry.blog = cheese_blog
+>>> entry.save()
+############################
+retrive
+object = Class.objects.filter() 
+
+
+Blog.objects
+<django.db.models.manager.Manager object at ...>
+>>> b = Blog(name='Foo', tagline='Bar')
+>>> b.objects
+
+
+
+
+            # Get the current instance object to display in the template
+            img_obj = form.instance
+            https://djangocentral.com/uploading-images-with-django/
+            https://djangocentral.com/uploading-images-with-django/
+
+
+git init
+git add -A
+git commit -m 'Added my project'
+git remote add origin git@github.com:sammy/my-new-project.git
+git push -u -f origin master
+
+
+lastimage= Image.objects.last()

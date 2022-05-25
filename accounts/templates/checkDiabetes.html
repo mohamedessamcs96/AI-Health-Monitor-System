@@ -1,0 +1,22 @@
+
+{% extends  'main.html'%}
+
+{% load crispy_forms_tags %}  
+
+
+{% block content %}
+<div class="container">
+    <h1>Predict Diabetes</h1>
+    
+    <form method="POST" action="{% url 'checkdiabetes' %} ">
+        <div class="">
+        <div class="">
+            {% csrf_token %}
+            {{ form|crispy }}
+            </div>
+        </div>
+        <button class="btn btn-primary" type="submit">check</button>
+    </form>
+    
+{% endblock %}
+

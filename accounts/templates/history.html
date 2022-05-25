@@ -1,0 +1,81 @@
+{% extends  'main.html'%}
+
+{% load crispy_forms_tags %}  
+
+{% block content %}
+<div class="container">
+    <h1>Result</h1>
+
+    <p><strong>User:</strong>{{user.username}}</p>
+    <p><strong>Blood Type:</strong>{{user.bloodtype}}</p>
+    <p><strong>Born in:</strong>{{user.birthdate}}</p>
+    
+    <h1>Diabetes Record</h1>
+    <table class="table table-dark table-striped">
+        <tr style="color:white">
+
+            <th style="color:white">Patient Name</th>
+            <th style="color:white">Classification</th>
+            <th style="color:white">created</th>
+            
+        </tr>
+
+        {%for diabet in diabetes%}
+        <tr>
+            <td style="color:white">{{diabet.patient}}</td>
+            <td style="color:white">{{diabet.classification}}</td>
+            <td style="color:white">{{diabet.created}}</td>   
+        </tr>
+        {%endfor%}
+
+      </table>
+
+      <h1>Cancer Record</h1>
+      <table class="table table-dark table-striped">
+        <tr style="color:white">
+  
+              <th style="color:white">Patient Name</th>
+              <th style="color:white">Classification</th>
+              <th style="color:white">created</th>
+              
+          </tr>
+  
+          {%for cancer in cancers%}
+          <tr>
+              <td>{{cancer.patient}}</td>
+              <td>
+                {{cancer.classification}}
+              </td>
+              <td>{{cancer.created}}</td>   
+          </tr>
+          {%endfor%}
+  
+        </table>
+
+
+        <h1>Prescription Record</h1>
+        <table class="table table-dark table-striped">
+            <tr>
+        
+              <th style="color:white">Patient Name</th>
+              <th style="color:white">Prescription</th>
+              <th style="color:white">created</th>
+                
+            </tr>
+        
+            {% for prescription in prescriptions %}
+            <tr>
+                <td>{{prescription.patient}}</td>
+                <td>
+                    {{prescription.description}}
+                </td>
+                
+                <td>{{prescription.created}}</td>   
+            </tr>
+            {%endfor%}
+        
+          </table>
+          {% endblock %}
+        </div>
+        
+

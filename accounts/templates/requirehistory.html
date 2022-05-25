@@ -1,0 +1,15 @@
+{% extends  'main.html'%}
+
+{% load crispy_forms_tags %}  
+
+{% block content %}
+<div class="container">
+    <h1>See Patient History?</h1>
+    <form method="POST" action="{% url 'othershistory' %} ">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button class="btn btn-primary" type="submit">check</button>
+    </form>
+</div>
+{% endblock %}
+
