@@ -9,7 +9,7 @@ import os
 import tensorflow
 # Create your views here.
 from . import used_functions
-from .models import DiabetesDiagnose,CancerDiagnose,ReciptImage,User,XrayImage
+from .models import DiabetesDiagnose,CancerDiagnose,ReciptImage,User,XrayImage,Complains
 from .forms import NewUserForm,DiabetesForm,CancerForm,requreHistory,XRayImageForm
 
 from PIL import Image
@@ -17,54 +17,78 @@ from pytesseract import pytesseract
 from .forms import ImageForm
 import joblib
 
-#diabetes_loaded_model=joblib.load(open(r"C:\Users\THE LAPTOP SHOP\Desktop\HealthMonitor\AIHealthMonitor\accounts\ML models\PredictDiabetes", 'rb'))
-#cancer_loaded_model=joblib.load(open(r"C:\Users\THE LAPTOP SHOP\Desktop\HealthMonitor\AIHealthMonitor\accounts\ML models\bloodmodel", 'rb'))
+from django.contrib.auth.decorators import login_required
+
+
+
+path_to_tesseract = "AIHealthMonitor/Tesseract-OCR"
 diabetes_loaded_model=joblib.load(open('accounts/ML models/PredictDiabetes','rb'))
 cancer_loaded_model=joblib.load(open('accounts/ML models/bloodmodel','rb'))
 chest_loaded_model=tensorflow.keras.models.load_model('accounts/ML models/best_model.hdf5')
+
+@login_required(login_url='/login/')
 def require_history(request):
     form=requreHistory
     return render(request,'requirehistory.html',{'form':form})
 
 
-
+@login_required(login_url='/login/')
 def others_history(request):
     if request.method=='POST':
         patientid=request.POST.get('ID')
-        print(request.user.identitycard)
-        print(patientid)
-        patient_query=User.objects.filter(identitycard=patientid)
-        patientusername=((patient_query.values('username'))[0]['username'])
-        diabetes=(DiabetesDiagnose.objects.filter(patient__identitycard=patientid))
-        print(diabetes)
         
-        #12312312312313
-        print(type(patientusername))
-        print(type(request.user))
-        #print(type(((diabetes.values('classification'))[0]['classification'])))
+        diabetes=(DiabetesDiagnose.objects.filter(patient__identitycard=patientid))
+        
+    
         cancers=CancerDiagnose.objects.filter(patient__identitycard=patientid)
-        print(cancers)
-        #print(type(((diabetes.values('classification'))[0]['classification'])))
-        prescriptions=ReciptImage.objects.filter(patient=request.user)
-        #print(type(((diabetes.values('classification'))[0]['classification'])))
-        print(prescriptions)
-        context={'diabetes':diabetes,'cancers':cancers,'prescriptions':prescriptions}
-        return render(request,'othershistory.html',context)
+        prescriptions=ReciptImage.objects.filter(patient__identitycard=patientid)
+        chest=XrayImage.objects.filter(patient__identitycard=patientid)
+        patient_query=User.objects.filter(identitycard=patientid)
+        if(patient_query):
+            context={'diabetes':diabetes,'cancers':cancers,'prescriptions':prescriptions,'chests':chest}
+            return render(request,'othershistory.html',context)
+        else:
+            context={'error_message':'No data for that Identitiy Card, Maybe he/she not registered before..'}
+            return render(request,'errorMessage.html',context)
+
+
     return render(request,'requirehistory.html',context)
 
+
+@login_required(login_url='/login/')
 def get_history(request):
-    #prescriptions=ReciptImage.objects.filter(patient=request.user)
-    #print(prescriptions.values)
+
     diabetes=DiabetesDiagnose.objects.filter(patient=request.user)
     cancers=CancerDiagnose.objects.filter(patient=request.user)
     prescriptions=ReciptImage.objects.filter(patient=request.user)
-    #print(type(((diabetes.values('classification'))[0]['classification'])))
-    print(prescriptions)
-    context={'diabetes':diabetes,'cancers':cancers,'prescriptions':prescriptions}
+    chest=XrayImage.objects.filter(patient=request.user)
+    print("chest")
+    print(chest)
+    context={'diabetes':diabetes,'cancers':cancers,'prescriptions':prescriptions,'chests':chest}
     return render(request,'history.html',context)
 
 
+@login_required(login_url='/login/')
+def getComplains(request):
+    if request.user.is_superuser:
+        complains=Complains.objects.all()
+        context={'complains':complains}
+        return render(request,'getcomplains.html',context)
+    else:
+        context={'error_message':"Sorry,You're not Authorised to visit this page.."}
+        return render(request,'errorMessage.html',context)
 
+
+@login_required(login_url='/login/')
+def user_message(request):
+    if request.method=='POST':
+        message=request.POST['complains']
+        m = Complains(patient=request.user, message=message, phonenumber=(request.user.phonenumber))
+        m.save()
+        print(message)
+        return redirect(homePage)
+
+@login_required(login_url='/login/')
 def image_upload_view(request):
     """Process images uploaded by users"""
     if request.method == 'POST':
@@ -75,29 +99,11 @@ def image_upload_view(request):
             # Get the current instance object to display in the template
             img_obj = form.instance
             print(img_obj)
-            #uploadedImage = request.FILES
             print("image instance object "+str(img_obj))
-            #print("request filses "+str(request.FILES['upload']))
-            # Defining paths to tesseract.exe
-            # and the image we would be using
-            path_to_tesseract = r"C:\Users\THE LAPTOP SHOP\Desktop\HealthMonitor\AIHealthMonitor\Tesseract-OCR"
-            #image_path = r"Python-language.png"
-            #image_path=uploadedImage
-            # Opening the image & storing it in an image object
-            #loadedimg = ReciptImage.objects.filter(title=img_obj)
-            #loadedimg = ReciptImage.objects.filter(patient=request.user,title=img_obj)
-            #print("loaded image"+str(loadedimg))
-            
-            #image_data = open("C:/Users/THE LAPTOP SHOP/Desktop/HealthMonitor/AIHealthMonitor"+img_obj.image.url, "rb").read()
-            #print(image_data)
-            #print(loadedimg.values_list('image', flat=True)[0])
-            #print(ReciptImage.objects.values('image'))
-            #loaded_image=(ReciptImage.objects.filter(title=img_obj).values('image'))[0]['image']
-            #print(loaded_image)
-            #print(ReciptImage.objects.filter(title=img_obj).path)
-            #data= open(os.path.join(settings.MEDIA_ROOT, str(img_obj.image.url)),'rb').read()
-            img = Image.open(r"C:/Users/THE LAPTOP SHOP/Desktop/HealthMonitor/AIHealthMonitor"+img_obj.image.url)
 
+            import os
+            from django.conf import settings
+            img = Image.open(request.FILES['image'])
             # Providing the tesseract executable
             # location to pytesseract library
             #pytesseract.tesseract_cmd = path_to_tesseract
@@ -116,8 +122,6 @@ def image_upload_view(request):
             from datetime import datetime
             datetime.today().now
             r=ReciptImage.objects.filter(pk=img_obj.pk).update(patient=request.user,description=text)
-            #r = ReciptImage(patient=request.user,description=text,pk=img_obj.pk,created=datetime.today().now().year)
-            #r.save()
             
             print("valid")
             return render(request, 'uploadrecipt.html', {'form': form, 'img_obj': img_obj,'description':text})
@@ -130,7 +134,7 @@ def image_upload_view(request):
 
 
 ################################################
-
+@login_required(login_url='/login/')
 def upload_Chest_Photo(request):
     """Process images uploaded by users"""
     if request.method == 'POST':
@@ -142,53 +146,30 @@ def upload_Chest_Photo(request):
  
             # Get the current instance object to display in the template
             img_obj = form.instance
-            img = Image.open(r"C:/Users/THE LAPTOP SHOP/Desktop/HealthMonitor/AIHealthMonitor"+img_obj.image.url)
-            print("img")
-            print(img)
-            loaded_image=(XrayImage.objects.filter(title=img_obj).values('image'))[0]['image']
-            #print(loaded_image)
-            #img='AIHealthMonitor/'+loaded_image
+            
             import PIL
             import numpy as np
-            print("imgg")
-            print(img)
           
-            print(np.array(img))
-            from keras.preprocessing import image
-            import tensorflow as tf
             img = request.FILES['image']
             print(img)
-            #img = image.load_img(myfile, target_size=(100, 100))
-            #img= tf.image.resize(myfile,(100,100))
-            #img= tf.keras.layers.Resizing(img,100,100)
-            #image = cv2.imread(request.FILES['image'])
+
             file = request.FILES['image']
             img = Image.open(request.FILES['image'])
             img = np.array(img)
             resized_image = cv2.resize(img, (100,100))
             scaled_image = resized_image.astype("float32")/255.0
             sample_batch = scaled_image.reshape(1, 100, 100, 1) # 1 image, 100, 100 dim , 1 no of chanels
-            #npimg = np.fromfile(file, np.uint8)
-            #file = cv2.imdecode(npimg, cv2.IMREAD_COLOR)
-            #resized = cv2.resize(file, (100,100))
-            #img = image.img_to_array(img)
-            #img = np.expand_dims(img, axis=0)
-            #img = img/255
-            #img=img.reshape(1, 100, 100, 1)
+          
             y=chest_loaded_model.predict(sample_batch)
-            #gray_image = cv2.imread(img, 0)
+            classification=""
+            if(y>0.5):
+                classification="Chest cancer"
+            else:
+                classification="No Chest cancer"
 
-            """
-            gray_image = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-            resized_image = cv2.resize(gray_image, (100,100), PIL.Image.ANTIALIAS)
-            scaled_image = resized_image.astype("float32")/255.0
-            sample_batch = scaled_image.reshape(1, 100, 100, 1) # 1 image, 100, 100 dim , 1 no of chanels
-            
-            print("Classification :")
-            y=chest_loaded_model.predict(sample_batch)
-            """
-            #y=0
-            print(y)
+            x=XrayImage.objects.filter(pk=img_obj.pk).update(patient=request.user,classification=classification)
+
+         
             return render(request, 'UploadChestPhoto.html', {'form': form, 'img_obj': img_obj,'classification':y})
         return render(request, 'UploadChestPhoto.html', {'form': form,'classification':y})
         
@@ -197,17 +178,21 @@ def upload_Chest_Photo(request):
         return render(request, 'UploadChestPhoto.html', {'form': form})
 
 ########################################################
-
+@login_required(login_url='/login/')
 def getDiabetesForm(request):
     form=DiabetesForm()
     context={'form':form}
     return render(request,'checkDiabetes.html',context)
 
+
+
+@login_required(login_url='/login/')
 def getCancerForm(request):
     form=CancerForm()
     context={'form':form}
     return render(request,'checkCancer.html',context)
 
+@login_required(login_url='/login/')
 def bodyCheckup(request):    
     height=request.user.height/100
     weight=request.user.weight
@@ -226,10 +211,17 @@ def bodyCheckup(request):
     
     return render(request,'bodyCheckup.html',{'bmi':bmi,'status':status})
 
+@login_required(login_url='/login/')
+def waterAvg(request):    
+    weightPounds=(request.user.weight)*2.2046226218
+    waterInOunces=weightPounds*2/3
+    liters=waterInOunces*0.0295735
+    
+    return render(request,'wateravg.html',{'liters':liters})
 
 
 
-
+@login_required(login_url='/login/')
 def checkDiabetes(request):
     form=DiabetesForm() 
     if request.method=='POST':
@@ -265,7 +257,8 @@ def checkDiabetes(request):
             print(form.errors.as_data())
             print("is Not valid")
             return redirect('/')
-        
+
+@login_required(login_url='/login/')
 def checkCancer(request):
     form=CancerDiagnose() 
     if request.method=='POST':
@@ -305,7 +298,9 @@ def checkCancer(request):
 def homePage(request):
     return render(request,'home.html')
 
-
+@login_required(login_url='/accounts/login/')
+def waitUmblance(request):
+    return render(request,'waitambulance.html')
 
 def register_request(request):
     if request.method=="POST":

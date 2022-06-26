@@ -6,9 +6,6 @@ from django.contrib.auth.models import User,AbstractUser
 
 
 
-   
-    
-
 class User(AbstractUser):
     GENDER_CHOICES = (
         ('M', 'Male'),
@@ -94,3 +91,13 @@ class XrayImage(models.Model):
         return self.title
 
 #Foo.objects.filter(gender = 'M').update(gender = 'H')
+
+
+class Complains(models.Model):
+    message=models.CharField(max_length=150)
+    patient=models.ForeignKey(User,on_delete=models.CASCADE, null=True)
+    phonenumber=models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.patient
+
