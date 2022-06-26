@@ -9,6 +9,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   
+<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 
 
 <link rel="stylesheet" type="text/css" href="{% static 'layout/styles/layout.css' %}" />
@@ -26,7 +27,7 @@
   <header id="header" class="hoc clear"> 
     <!-- ################################################################################################ -->
     <div id="logo" class="one_quarter first">
-      <h1><a href="index.html"><span>HTI </span>AI <span>Health Care </span> SYSTEM</a></h1>
+      <h1><a href="index.html"><span>DR.</span>Robot</h1>
     </div>
     <div class="three_quarter">
       <ul class="nospace clear">
@@ -55,6 +56,7 @@
         {% if user.is_authenticated %}
         <li class="active"><a href="/logout">Logout</a></li>
         <li class="active"><a href="#">Welcome, {{user.username}}</a></li>
+        
         {% else %}
         <li class="active"><a href="/login">Login</a></li>
 
@@ -64,17 +66,7 @@
       </ul>
     </nav>
     <!-- ################################################################################################ -->
-    <div id="searchform">
-      <div>
-        <form action="#" method="post">
-          <fieldset>
-            <legend>Quick Search:</legend>
-            <input type="text" placeholder="Enter search term&hellip;">
-            <button type="submit"><i class="fas fa-search"></i></button>
-          </fieldset>
-        </form>
-      </div>
-    </div>
+   
     <!-- ################################################################################################ -->
   </section>
 </div>
@@ -86,9 +78,13 @@
     <!-- ################################################################################################ -->
     <article>
       <p>Welcome to</p>
-      <h3 class="heading">HTI AI Health Care System</h3>
-      <p>Eu elit lacinia porta in eget risus duis pretium tellus ac odio</p>
-      <footer><a class="btn" href="#">Nulla tristique ipsum <i class="fas fa-angle-right"></i></a></footer>
+      <h3 class="heading">DR. Robot Health Care System</h3>
+      <br>
+      <br>
+      <h3>The preservation of health is easier than </h3>
+      <h3>the cure for disease</h3>
+      <br>
+      <h3 >— B. J. Palmer</h3>
     </article>
     <!-- ################################################################################################ -->
   </div>
@@ -111,49 +107,49 @@
       <p>Lectus vehicula tincidunt maecenas non dolor ac nunc malesuada</p>
     </div>
     <div class="group center btmspace-80">
-      <article class="one_third first"><a class="ringcon btmspace-50" href="{% url 'getdiabetesform' %}"><i class="fas fa-chart-pie"></i></a>
+      <article class="one_third first"><a class="ringcon btmspace-50" href="{% url 'getdiabetesform' %}"><i class="fa fa-user-md"></i></a>
         <h6 class="heading">Check Diabetes</h6>
-        <p>Dolor nec magna accumsan tempus mauris lectus enim luctus vitae viverra a pharetra mollis diam phasellus nec dolor sed ornare.</p>
+        <p>Check the diabtetes using the blood analysis.</p>
       </article>
-      <article class="one_third"><a class="ringcon btmspace-50" href="{% url 'getcancerform' %}"><i class="fas fa-chart-pie"></i></a>
+      <article class="one_third"><a class="ringcon btmspace-50" href="{% url 'getcancerform' %}"><i class="fa fa-stethoscope"></i></a>
         <h6 class="heading">Check Cancer</h6>
-        <p>Nam rhoncus lacus at lorem fusce tempus ut vitae metus fusce hendrerit tempus sapien suspendisse condimentum mollis ligula.</p>
+        <p>Check Cancer using blood analysis it's a very effective way to predict cancer.</p>
       </article>
-      <article class="one_third"><a class="ringcon btmspace-50" href="{%url 'bodycheckup' %}"><i class="fas fa-chart-pie"></i></a>
+      <article class="one_third"><a class="ringcon btmspace-50" href="{%url 'bodycheckup' %}"><i class="fa fa-heartbeat"></i></a>
         <h6 class="heading">Body Checkup</h6>
-        <p>Enim integer laoreet odio sed neque vestibulum vehicula neque et ornare congue lacus nisi pharetra nisl a pharetra urna metus.</p>
+        <p>Check your body weights bmi and others.</p>
       </article>
     </div>
     <div class="group center btmspace-80">
-      <article class="one_third first"><a class="ringcon btmspace-50" href="{% url 'uploadrecipt' %}"><i class="fas fa-cube"></i></a>
+      <article class="one_third first"><a class="ringcon btmspace-50" href="{% url 'uploadrecipt' %}"><i class="fa fa-flask"></i></a>
         <h6 class="heading">Upload Recipt</h6>
-        <p>Dolor nec magna accumsan tempus mauris lectus enim luctus vitae viverra a pharetra mollis diam phasellus nec dolor sed ornare.</p>
+        <p>Upload your Reciipt medicine and it will be extracted and saved in database.</p>
       </article>
-      <article class="one_third"><a class="ringcon btmspace-50" href="{% url 'gethistory' %}"><i class="fas fa-chart-pie"></i></a>
+      <article class="one_third"><a class="ringcon btmspace-50" href="{% url 'gethistory' %}"><i class="fa fa-plus-square"></i></a>
         <h6 class="heading">Get History</h6>
-        <p>Nam rhoncus lacus at lorem fusce tempus ut vitae metus fusce hendrerit tempus sapien suspendisse condimentum mollis ligula.</p>
+        <p>Check your old histories all medicies and classifications .</p>
       </article>
-      <article class="one_third"><a class="ringcon btmspace-50" href="{% url 'requirehistory' %}"><i class="fas fa-paw"></i></a>
+      <article class="one_third"><a class="ringcon btmspace-50" href="{% url 'requirehistory' %}"><i class="fa fa-id-badge"></i></a>
         <h6 class="heading">Require History</h6>
-        <p>Enim integer laoreet odio sed neque vestibulum vehicula neque et ornare congue lacus nisi pharetra nisl a pharetra urna metus.</p>
+        <p>Require others people history using the identity card.</p>
       </article>
     </div>
     <div class="group center btmspace-80">
-      <article class="one_third first"><a class="ringcon btmspace-50" href="{% url 'uploadchestphoto' %}"><i class="fas fa-cube"></i></a>
+      <article class="one_third first"><a class="ringcon btmspace-50" href="{% url 'uploadchestphoto' %}"><i class="fa fa-hospital-o"></i></a>
         <h6 class="heading">Upload Chest X RAY</h6>
-        <p>Dolor nec magna accumsan tempus mauris lectus enim luctus vitae viverra a pharetra mollis diam phasellus nec dolor sed ornare.</p>
+        <p>Chest Cancer classification with image.</p>
       </article>
-      <article class="one_third"><a class="ringcon btmspace-50" href="{% url 'gethistory' %}"><i class="fas fa-chart-pie"></i></a>
-        <h6 class="heading">Get History</h6>
-        <p>Nam rhoncus lacus at lorem fusce tempus ut vitae metus fusce hendrerit tempus sapien suspendisse condimentum mollis ligula.</p>
+      <article class="one_third"><a class="ringcon btmspace-50" href="{% url 'wateravg' %}"><i class="fa fa-glass
+        "></i></a>
+        <h6 class="heading">Water AVG</h6>
+        <p>Getting enough water every day is important for your health.</p>
       </article>
-      <article class="one_third"><a class="ringcon btmspace-50" href="{% url 'requirehistory' %}"><i class="fas fa-paw"></i></a>
-        <h6 class="heading">Require History</h6>
-        <p>Enim integer laoreet odio sed neque vestibulum vehicula neque et ornare congue lacus nisi pharetra nisl a pharetra urna metus.</p>
+      <article class="one_third"><a class="ringcon btmspace-50" href="{% url 'waitumblance' %}"><i class="fa fa-ambulance"></i></a>
+        <h6 class="heading">Waiting Umblance</h6>
+        <p>heck for response. Speak to them and gently shake them to see if they’re conscious..</p>
       </article>
     </div>
     
-    <p class="center"><a class="btn" href="#">Consectetuer porttitor <i class="fas fa-angle-right"></i></a></p>
     <!-- ################################################################################################ -->
     <!-- / main body -->
     <div class="clear"></div>
@@ -166,13 +162,16 @@
   <section class="hoc container clear"> 
     <!-- ################################################################################################ -->
     <article class="one_third first">
-      <h6 class="heading">Vel nunc nulla nunc metus tempor vitae eu diam</h6>
-      <p>Sed placerat leo nec tincidunt aliquet ipsum mi ultrices magna eu tempor quam dolor eu sem nullam risus turpis rhoncus vel varius consequat laoreet ac neque pellentesque imperdiet sagittis velit vivamus urna ut dictum erat eu massa aliquam nunc urna ornare.</p>
-      <p class="btmspace-30">Tincidunt quis posuere id justo aenean velit ipsum tincidunt aliquet lacinia nec pharetra in purus proin auctor justo ac sem.</p>
-      <p><a class="btn" href="#">Donec rutrum justo at <i class="fas fa-angle-right"></i></a></p>
+      <h6 class="heading">Health monitoring is very important in terms of prevention</h6>
+      <p>
+        particularly if the early detection of diseases can reduce suffering and medical costs. The diagnosis and prompt treatment of various diseases can radically improve alternatives for the medical treatment of the patient. 
+        
+        .</p>
+      <p class="btmspace-30">This is particularly true in cardiovascular diseases and diabetes; </p>
+      <p><a class="btn" href="https://www.sciencedirect.com/topics/engineering/health-monitoring#:~:text=Health%20monitoring%20is%20very%20important,medical%20treatment%20of%20the%20patient." target="_blank">Read more <i class="fas fa-angle-right"></i></a></p>
     </article>                                                       
-    <figure class="one_third"><a class="imgover" href="#"><img src="{% static 'images/demo/348x420.png'%}" alt=""></a></figure>
-    <figure class="one_third"><a class="imgover" href="#"><img src="{% static 'images/demo/348x420.png'%}" alt=""></a></figure>
+    <figure class="one_third"><a class="imgover" href="#"><img src="{% static 'images/demo/Monitor2.jpg'%}" alt=""></a></figure>
+    <figure class="one_third"><a class="imgover" href="#"><img src="{% static 'images/demo/Monitor3.jpg'%}" alt=""></a></figure>
     <!-- ################################################################################################ -->
   </section>
 </div>
@@ -183,54 +182,47 @@
   <section class="hoc container clear"> 
     <!-- ################################################################################################ -->
     <div class="sectiontitle">
-      <h6 class="heading">Libero morbi tincidunt nulla sit</h6>
-      <p>Amet ipsum praesent at velit aliquam ullamcorper sem a auctor</p>
+      <h6 class="heading">Additional things you need to monitor</h6>
+      <p>You live in your body every day, which makes you the best judge of your own health.</p>
     </div>
     <ul class="nospace group btmspace-80 overview">
       <li class="one_third">
-        <article><a href="#"><i class="fas fa-smile"></i></a>
-          <h6 class="heading"><a href="#">Dapibus nisi nunc vehicula</a></h6>
-          <p>Nunc quis mattis pede turpis at elit phasellus sed sem pellentesque nunc&hellip;</p>
-          <footer><a href="#">View Details <i class="fas fa-angle-right"></i></a></footer>
+        <article><a href="#"><i class="fa fa-bed"></i></a>
+          <h6 class="heading"><a href="#">Monitor Your Sleepiness</a></h6>
+          <p>require an alarm clock to wake up most mornings&hellip;</p>
         </article>
       </li>
       <li class="one_third">
-        <article><a href="#"><i class="fas fa-trash"></i></a>
-          <h6 class="heading"><a href="#">Dignissim consequat proin</a></h6>
-          <p>Nec odio nam in lacus ac purus dapibus pretium sed ornare eleifend tellus&hellip;</p>
-          <footer><a href="#">View Details <i class="fas fa-angle-right"></i></a></footer>
+        <article><a href="#"><i class="fa fa-exclamation-triangle"></i></a>
+          <h6 class="heading"><a href="#">Check Your Hairbrush</a></h6>
+          <p>If your hair is falling out, ask your doctor to check your levels of blood ferritin, an indication of how much iron your body is storing &hellip;</p>
         </article>
       </li>
       <li class="one_third">
-        <article><a href="#"><i class="fas fa-life-ring"></i></a>
-          <h6 class="heading"><a href="#">Aliquam mollis neque ut</a></h6>
-          <p>Ullamcorper tempor dolor tortor varius nisi id euismod risus neque curabitur&hellip;</p>
-          <footer><a href="#">View Details <i class="fas fa-angle-right"></i></a></footer>
+        <article><a href="#"><i class="fa fa-check-circle"></i></a>
+          <h6 class="heading"><a href="#">Chart Your Pee</a></h6>
+          <p>Keep a mental color chart of the colour of your urine.&hellip;</p>
         </article>
       </li>
       <li class="one_third">
-        <article><a href="#"><i class=" fas fa-low-vision"></i></a>
-          <h6 class="heading"><a href="#">Sodales dui sit amet mi</a></h6>
-          <p>Donec cursus sapien neque gravida nulla cursus lorem ut tempor massa &hellip;</p>
-          <footer><a href="#">View Details <i class="fas fa-angle-right"></i></a></footer>
+        <article><a href="#"><i class="fa fa-thermometer-full"></i></a>
+          <h6 class="heading"><a href="#">Check Your Cholesterol</a></h6>
+          <p>Check your cholesterol once a year either with a home kit, which is available at most pharmacies. If your total cholesterol is over 150 mg/dl, follow up with your doctor. &hellip;</p>
         </article>
       </li>
       <li class="one_third">
-        <article><a href="#"><i class="fas fa-bug"></i></a>
-          <h6 class="heading"><a href="#">Porta libero at scelerisque</a></h6>
-          <p>Lorem ipsum et arcu mauris consequat semper vivamus lobortis consequat&hellip;</p>
-          <footer><a href="#">View Details <i class="fas fa-angle-right"></i></a></footer>
+        <article><a href="#"><i class="fa fa-paw"></i></a>
+          <h6 class="heading"><a href="#">Go Over Your Toenails Once a Month</a></h6>
+          <p>Look for early signs of fungal infection or in-grown toenails; both are best treated early.&hellip;</p>
         </article>
       </li>
       <li class="one_third">
         <article><a href="#"><i class="fas fa-bicycle"></i></a>
-          <h6 class="heading"><a href="#">Purus fusce consectetuer</a></h6>
-          <p>Nisl in massa phasellus feugiat arcu sed lacinia egestas augue lorem posuere&hellip;</p>
-          <footer><a href="#">View Details</a> <i class="fas fa-angle-right"></i></footer>
+          <h6 class="heading"><a href="#">Follow Your Heart</a></h6>
+          <p>Check your heartbeat after you exercise.&hellip;</p>
         </article>
       </li>
     </ul>
-    <footer class="center"><a class="btn" href="#">Vestibulum suspendisse <i class="fas fa-angle-right"></i></a></footer>
     <!-- ################################################################################################ -->
   </section>
 </div>
@@ -241,33 +233,34 @@
   <section class="hoc container clear"> 
     <!-- ################################################################################################ -->
     <div class="sectiontitle">
-      <h6 class="heading">Felis sed pretium tortor nunc quis</h6>
-      <p>Dolor in fermentum ipsum vel mi mattis venenatis vivamus</p>
+      <h6 class="heading">Balanced Diet</h6>
+      <p>There are several essential factors for a balanced diet:</p>
     </div>
     <div id="latest" class="group">
-      <article class="one_third first"><a class="imgover" href="#"><img src="{% static 'images/demo/348x261.png'%}" alt=""></a>
+      <article class="one_third first"><a class="imgover" href="#"><img src="{% static 'images/demo/carp.jpg'%}" alt=""></a>
         <div class="excerpt">
-          <h6 class="heading">Elementum laoreet lorem donec</h6>
-          <p>Pede nam quis mauris nunc volutpat elementum sapien in hendrerit justo non nisl sed dictum libero et nisi.</p>
-          <footer><a href="#">Read More <i class="fas fa-angle-right"></i></a></footer>
+          <h6 class="heading">Low-carb, whole-food diet</h6>
+          <p>The low-carb, whole-food diet is perfect for people who need to lose weight, optimize health, and lower their risk of disease.</p>
+          <footer><a target="_blank" href="https://www.healthline.com/nutrition/low-carb-diet-meal-plan-and-menu">Read More <i class="fas fa-angle-right"></i></a></footer>
         </div>
       </article>
-      <article class="one_third"><a class="imgover" href="#"><img src="{% static 'images/demo/348x261.png'%}" alt=""></a>
+      <article class="one_third"><a class="imgover" href="#"><img src="{% static 'images/demo/mediterranean.jpg'%}" alt=""></a>
         <div class="excerpt">
-          <h6 class="heading">Vestibulum accumsan sagittis</h6>
-          <p>Orci nulla purus pellentesque risus magna vulputate vitae sodales in aliquam at tortor praesent tincidunt.</p>
-          <footer><a href="#">Read More <i class="fas fa-angle-right"></i></a></footer>
+          <h6 class="heading">Mediterranean diet
+          </h6>
+          <p>It emphasizes foods that were commonly eaten around the Mediterranean region during the 20th century and earlier..</p>
+          <footer><a  target="_blank" href="https://www.healthline.com/nutrition/mediterranean-diet-meal-plan">Read More <i class="fas fa-angle-right"></i></a></footer>
         </div>
       </article>
-      <article class="one_third"><a class="imgover" href="#"><img src="{% static 'images/demo/348x261.png'%}" alt=""></a>
+      <article class="one_third"><a class="imgover" href="#"><img src="{% static 'images/demo/vegan.jpg'%}" alt=""></a>
         <div class="excerpt">
-          <h6 class="heading">Lorem in odio pellentesque at</h6>
-          <p>Donec faucibus lorem ut neque pellentesque quam donec imperdiet nisl sed euismod ullamcorper tortor cras.</p>
+          <h6 class="heading">Vegan diet</h6>
+          <p>The diet is based exclusively on plant foods and eliminates all animal products..</p>
           <footer><a href="#">Read More <i class="fas fa-angle-right"></i></a></footer>
         </div>
       </article>
     </div>
-    <footer class="center"><a class="btn" href="#">Pharetra pulvinar risus <i class="fas fa-angle-right"></i></a></footer>
+    <footer class="center"><a target="_blank" class="btn" href="https://www.healthline.com/nutrition/vegan-diet-guide">More Diets <i class="fas fa-angle-right"></i></a></footer>
     <!-- ################################################################################################ -->
   </section>
 </div>
@@ -278,9 +271,9 @@
   <footer id="footer" class="hoc clear"> 
     <!-- ################################################################################################ -->
     <div class="one_third first">
-      <h6 class="heading">Nulla facilisi praesent</h6>
-      <p>Diam libero interdum at fringilla id interdum eu ante phasellus nec mauris non risus fermentum condimentum in.</p>
-      <p class="btmspace-30">Vulputate ante ut adipiscing egestas risus orci tincidunt nulla ac lacinia lacus felis et augue donec lacus [<a href="#"><i class="fas fa-arrow-right"></i></a>]</p>
+      <h6 class="heading">How Do I follow up with the Docotr</h6>
+      <p>Chatting on the phone is the most appropriate way to follow up after certain appointments, and it may feel most natural to some patients. However, feel free to explore the other options.</p>
+      <p class="btmspace-30"> Consider using email or text messages to follow up after routine appointments so patients can respond at their convenience. [<a href="#"><i class="fas fa-arrow-right"></i></a>]</p>
       <ul class="faico clear">
         <li><a class="faicon-dribble" href="#"><i class="fab fa-dribbble"></i></a></li>
         <li><a class="faicon-facebook" href="#"><i class="fab fa-facebook"></i></a></li>
@@ -292,24 +285,16 @@
     </div>
     <div class="one_third">
       <h6 class="heading">Aenean lobortis quam at</h6>
-      <ul class="nospace clear latestimg">
-        <li><a href="#"><img src="{% static 'images/demo/100x100.png'%}" alt=""></a></li>
-        <li><a href="#"><img src="{% static 'images/demo/100x100.png'%}" alt=""></a></li>
-        <li><a href="#"><img src="{% static 'images/demo/100x100.png'%}" alt=""></a></li>
-        <li><a href="#"><img src="{% static 'images/demo/100x100.png'%}" alt=""></a></li>
-        <li><a href="#"><img src="{% static 'images/demo/100x100.png'%}" alt=""></a></li>
-        <li><a href="#"><img src="{% static 'images/demo/100x100.png'%}" alt=""></a></li>
-      </ul>
     </div>
     <div class="one_third">
       <h6 class="heading">Enim fusce venenatis laoreet</h6>
-      <p class="nospace btmspace-15">Elit sed est tortor molestie in consectetuer fringilla suscipit ut odio in.</p>
-      <form method="post" action="#">
+      <p class="nospace btmspace-15">Send us your Complains and the appropriate doctor we will call you.</p>
+      <form method="POST" action="{% url 'message' %}">
+        {% csrf_token %}
         <fieldset>
-          <legend>Newsletter:</legend>
-          <input class="btmspace-15" type="text" value="" placeholder="Name">
-          <input class="btmspace-15" type="text" value="" placeholder="Email">
-          <button type="submit" value="submit">Submit</button>
+          <legend>Your Complains:</legend>
+          <input class="btmspace-15" type="text"  style="height:100px; color: black;" name="complains" value="">
+          <button type="submit" value="submit">Submit your Complain</button>
         </fieldset>
       </form>
     </div>
@@ -322,8 +307,7 @@
 <div class="wrapper row5">
   <div id="copyright" class="hoc clear"> 
     <!-- ################################################################################################ -->
-    <p class="fl_left">Copyright &copy; 2018 - All Rights Reserved - <a href="#">Domain Name</a></p>
-    <p class="fl_right">Template by <a target="_blank" href="https://www.os-templates.com/" title="Free Website Templates">OS Templates</a></p>
+    <p class="fl_left">Copyright &copy; 2022 - All Rights Reserved - <a href="#">AI HEALTH TREATMENT</a></p>
     <!-- ################################################################################################ -->
   </div>
 </div>

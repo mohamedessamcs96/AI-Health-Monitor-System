@@ -1,0 +1,23 @@
+
+{% extends  'main.html'%}
+{% load static %}
+{% load crispy_forms_tags %}  
+
+{% block content %}
+<div class="container">
+    <center>
+    <h1>The Water Avg you Need to Drink per Day..</h1>
+    <img src="{% static 'images/demo/water.jpg' %}" alt="">
+    <br>
+    <br>
+    <p>
+        Getting enough water every day is important for your health. Drinking water can prevent dehydration, 
+        a condition that can cause unclear thinking, result in mood change, cause your body to overheat, 
+        and lead to constipation and kidney stones. Water helps your body: Keep a normal temperature.
+
+    </p>
+        <p><strong>Your Body need {{liters}} </strong>Liters Perday</p>
+    </center>
+</div>
+{% endblock %}
+

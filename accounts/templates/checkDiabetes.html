@@ -6,17 +6,37 @@
 
 {% block content %}
 <div class="container">
-    <h1>Predict Diabetes</h1>
+
+<div class="">
+    <h1 style="margin-left : 30vw; margin-bottom: 15px;" >Predict Diabetes</h1>
     
-    <form method="POST" action="{% url 'checkdiabetes' %} ">
-        <div class="">
-        <div class="">
-            {% csrf_token %}
-            {{ form|crispy }}
+    <form  style=" width: 50vw; margin-left : 25vw;" method="POST" action="{% url 'checkdiabetes' %} ">
+        {% csrf_token %}
+        <div class="row">
+           
+           <div style="margin: 5px;"> {{ form.num_preg|as_crispy_field}}</div>
+            <div style="margin: 5px;">{{ form.glucose_conc|as_crispy_field }}</div>
             </div>
-        </div>
-        <button class="btn btn-primary" type="submit">check</button>
-    </form>
+        <div class="row">
     
+            <div style="margin: 5px;"> {{ form.diastolic_bp|as_crispy_field}}</div>
+                <div style="margin: 5px;">{{ form.thickness|as_crispy_field }}</div>
+        </div>
+
+        <div class="row">
+            <div style="margin: 5px;">{{ form.insulin|as_crispy_field}}</div>
+                <div style="margin: 5px;">{{ form.bmi|as_crispy_field }}</div>
+        </div>
+
+        <div class="row">
+            <div style="margin: 5px;">{{ form.diab_pred|as_crispy_field}}</div>
+            <div style="margin: 5px;">{{ form.age|as_crispy_field }}</div>
+        </div>
+      
+        <button class="btn btn-primary" style="margin-left : 11vw;" type="submit">check</button>
+    </form>
+
+    </div>
+</div>
 {% endblock %}
 

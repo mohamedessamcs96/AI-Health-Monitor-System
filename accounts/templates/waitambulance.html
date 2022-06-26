@@ -1,0 +1,33 @@
+
+{% extends  'main.html'%}
+{% load static %}
+{% load crispy_forms_tags %}  
+
+{% block content %}
+<div class="container">
+    <center>
+    <h1>Help whilst waiting for an ambulance</h1>
+    <img src="{% static 'images/demo/air.jpg' %}" style="width: 400;" alt="">
+    <br>
+    <p>
+        First, take a deep breath to clear your head. Don’t rush in, keep yourself and the casualty calm and get an overview of the situation. See if you can identify what the most serious problem is. The most obvious problem isn’t always the most serious.
+
+    </p>
+    <br>
+    <p>
+        Ensure you and the casualty are safe from further danger and continually re-evaluate this. If you are in danger, make the situation safe (eg switch off a car engine etc)
+
+    </p>
+    <br>
+    <p>
+        Next, check for response. Speak to them and gently shake them to see if they’re conscious.
+        <strong>No response from the casualty</strong>
+        Open the airway and check for breathing.
+        Treat the most life-threatening problems first, such as lack of breathing or catastrophic bleeding. You can check for broken bones and other injuries afterwards.
+
+    </p>
+        
+    </center>
+</div>
+{% endblock %}
+

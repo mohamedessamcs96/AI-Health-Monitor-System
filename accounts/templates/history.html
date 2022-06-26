@@ -1,4 +1,4 @@
-{% extends  'main.html'%}
+ {% extends  'main.html'%}
 
 {% load crispy_forms_tags %}  
 
@@ -75,6 +75,31 @@
             {%endfor%}
         
           </table>
+
+          
+  
+<h1>Chest Record</h1>
+<table class="table table-dark table-striped">
+    <tr>
+
+      <th style="color:white">Patient Name</th>
+      <th style="color:white">Chest classification</th>
+      <th style="color:white">created</th>
+        
+    </tr>
+
+    {% for chest in chests %}
+    <tr>
+        <td>{{chest.patient}}</td>
+        <td>
+            {{chest.classification}}
+        </td>
+        <td>{{chest.created}}</td>   
+    </tr>
+    {%endfor%}
+
+  </table>
+
           {% endblock %}
         </div>
         

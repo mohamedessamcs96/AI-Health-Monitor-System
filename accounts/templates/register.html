@@ -4,12 +4,40 @@
 
 {% block content %}
 <div class="container py-5">
-    <h1>Register</h1>
-    <form method="POST" action="">
+    <h1 style="margin-left : 35vw; margin-bottom: 15px;">Register</h1>
+     <form  style=" width: 50vw; margin-left : 20vw;" method="POST" action="">
         {% csrf_token %}
-        {{ register_form|crispy }}
-        <button class="btn btn-primary" type="submit">Signup</button>
+        <div class="row">
+           
+            <div style="margin: 5px;"> {{ register_form.username|as_crispy_field}}</div>
+             <div style="margin: 5px;">{{ register_form.email|as_crispy_field }}</div>
+             <div style="margin: 5px;"> {{ register_form.phonenumber|as_crispy_field}}</div>
+        </div>
+
+         <div class="row">
+            <div style="margin: 5px;">{{ register_form.birthdate|as_crispy_field }}</div>
+            <div style="margin: 5px;">{{ register_form.identitycard|as_crispy_field }}</div>
+            <div style="margin: 5px;">{{ register_form.height|as_crispy_field }}</div>
+
+         </div>
+         <div class="row">
+            
+         </div>
+ 
+
+         <div class="row">
+             <div style="margin: 5px;">{{ register_form.password1|as_crispy_field}}</div>
+             <div style="margin: 5px;">{{ register_form.password2|as_crispy_field}}</div>
+         </div>
+         <div class="row" style="margin-left : 10vw;">
+            
+            <div style="margin: 5px;">{{ register_form.gender|as_crispy_field}}</div>
+             <div style="margin: 5px;">{{ register_form.bloodtype|as_crispy_field}}</div>
+             <div style="margin: 5px;">{{ register_form.weight|as_crispy_field }}</div>
+
+         </div>
+        <button class="btn btn-primary"  style="margin-left : 18vw;" type="submit">Signup</button>
     </form>
-    <p class="text-center">If you are already have an account ? <a href="/login">Login</a> instead</p>
+    <p style="margin-top: 10px;" class="text-center">If you are already have an account ? <a href="/login">Login</a> instead</p>
 </div>
 {% endblock %}

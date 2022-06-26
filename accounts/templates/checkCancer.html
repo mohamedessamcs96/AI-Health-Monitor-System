@@ -5,11 +5,29 @@
 
 {% block content %}
 <div class="container">
-    <h1>Check Cancer</h1>
-    <form method="POST" action="{% url 'checkcancer' %} ">
+    <h1 style="margin-left : 33vw; margin-bottom: 15px;" >Check Cancer</h1>
+    <form  style=" width: 50vw; margin-left : 20vw;" method="POST" action="{% url 'checkcancer' %} ">
         {% csrf_token %}
-        {{ form|crispy }}
-        <button class="btn btn-primary" type="submit">check</button>
+        <div class="row">
+           
+            <div style="margin: 5px;"> {{ form.age|as_crispy_field}}</div>
+             <div style="margin: 5px;">{{ form.bmi|as_crispy_field }}</div>
+             <div style="margin: 5px;"> {{ form.glucouse|as_crispy_field}}</div>
+             </div>
+ 
+         <div class="row">
+            <div style="margin: 5px;">{{ form.insuline|as_crispy_field }}</div>
+            <div style="margin: 5px;">{{ form.homa|as_crispy_field}}</div>
+            <div style="margin: 5px;">{{ form.leptin|as_crispy_field }}</div>
+         </div>
+ 
+         <div class="row">
+             <div style="margin: 5px;">{{ form.adiponcetin|as_crispy_field}}</div>
+             <div style="margin: 5px;">{{ form.resistiin|as_crispy_field }}</div>
+             <div style="margin: 5px;">{{ form.mcp|as_crispy_field }}</div>
+         </div>
+       
+         <button class="btn btn-primary" style="margin-left : 17vw;" type="submit">check</button>
     </form>
     
 </div>

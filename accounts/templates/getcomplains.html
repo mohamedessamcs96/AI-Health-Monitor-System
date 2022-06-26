@@ -1,0 +1,30 @@
+{% extends  'main.html'%}
+
+{% load crispy_forms_tags %}  
+
+{% block content %}
+<div class="container">
+    <h1>Complains</h1>
+
+    <table class="table table-dark table-striped">
+        <tr>
+
+            <th style="color:white">Patient Name</th>
+            <th style="color:white">Complains</th>
+            <th style="color:white">Phone Number</th>
+            
+        </tr>
+
+        {%for complain in complains %}
+        <tr>
+            <td>{{complain.patient}}</td>
+            <td>{{complain.message}}</td>
+            <td>{{complain.phonenumber}}</td>   
+        </tr>
+        {%endfor%}
+
+      </table>
+
+     {% endblock %}
+</div>
+

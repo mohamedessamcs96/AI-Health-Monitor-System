@@ -6,9 +6,7 @@
 <div class="container">
     <h1>Result</h1>
 
-    <p><strong>User:</strong>{{user.username}}</p>
-    <p><strong>Blood Type:</strong>{{user.bloodtype}}</p>
-    <p><strong>Born in:</strong>{{user.birthdate}}</p>
+  
     
     <h1>Diabetes Record</h1>
     <table class="table table-dark table-striped">
@@ -71,6 +69,30 @@
             {{prescription.description}}
         </td>
         <td>{{prescription.created}}</td>   
+    </tr>
+    {%endfor%}
+
+  </table>
+
+
+  
+<h1>Chest Record</h1>
+<table class="table table-dark table-striped">
+    <tr>
+
+      <th style="color:white">Patient Name</th>
+      <th style="color:white">Chest classification</th>
+      <th style="color:white">created</th>
+        
+    </tr>
+
+    {% for chest in chests %}
+    <tr>
+        <td>{{chest.patient}}</td>
+        <td>
+            {{chest.classification}}
+        </td>
+        <td>{{chest.created}}</td>   
     </tr>
     {%endfor%}
 
